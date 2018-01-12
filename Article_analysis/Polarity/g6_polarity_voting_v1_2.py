@@ -11,9 +11,9 @@ VERSION : 1.0
 import json
 
 
-from .g6_polarity_feel_v1_1 import *
-from .g6_polarity_textblob_v1_1 import *
-from .g6_polarity_vader_v1_1 import *
+from g6_polarity_feel_v1_1 import *
+from g6_polarity_textblob_v1_1 import *
+from g6_polarity_vader_v1_1 import *
 
 
 def openjson(filename):

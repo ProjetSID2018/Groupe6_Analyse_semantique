@@ -3,7 +3,7 @@
 """
 GROUPE 6 : ANALYSE SEMANTIQUE
 AUTEURS : QUENTIN MARCU, ROBIN VAYSSE, ADIL ZOUITINE
-VERSION : 1.0
+VERSION : 1.1
 """
 # -*- coding: utf-8 -*-
 ##############################################################################
@@ -23,8 +23,9 @@ def loadData():
     EN : Loading dataset
     FR : charge le jeu de données
     """
-    path = '/home/side/Documents/M1 SID/Projet SID/FEEL_clean.csv'
-    df = pd.DataFrame.from_csv(path, sep=';')
+#    path='FEEL_clean.csv'
+    path = 'Polarity/FEEL_clean.csv'
+    df = pd.read_csv(path, sep=';')
     return(df)
 
 
@@ -46,10 +47,28 @@ def del_stop_word_list(list_text):
     new_list = []
     stop = stopwords.words('french')
     stop.append("les")
+    stop.append(".")
+    stop.append("!")
+    stop.append("?")
+    stop.append(",")
+    stop.append(";")
+    stop.append(":")
+    stop.append("(")
+    stop.append(")")
+    stop.append("[")
+    stop.append("]")
+    stop.append("«")
+    stop.append("»")
+    stop.append('"')
     for i in list_text:
         if i not in stop:
             new_list.append(i)
     return new_list
+
+
+# FR/EN : input(list) output(string)
+def List_to_text(list_word):
+    return ' '.join(list_word)
 
 
 # FR/EN : input(string) output(list)
@@ -292,7 +311,7 @@ def Feel_polarity_main(text):
     # FR : convertit le text en liste de mot
     # FR : car la fonction qui calcule la polarité prend que les listes de mot
     resultat = Feel_polarity_aggregate(list_word)
-    return resultat
+    return(resultat)
 
 if __name__ == '__main__':
 

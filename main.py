@@ -1,7 +1,10 @@
 import glob
 import requests
-from Polarity import g6_polarity_voting_1_0 as lib
-import g6_create_file_wiki_syno as create
+import sys
+sys.path.insert(0, 'Article_analysis/Polarity')
+
+import g6_polarity_voting_v1_2 as lib
+from Word_analysis import g6_create_file_wiki_syno as create
 import json
 
 SERVER_URL = 'http://130.120.8.250:5005/var/www/html/projet2018/code/bd_index/API/index/'  # change this url with server url
