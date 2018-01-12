@@ -24,7 +24,7 @@ def loadData():
     FR : charge le jeu de données
     """
 #    path='FEEL_clean.csv'
-    path = 'Polarity/FEEL_clean.csv'
+    path = 'Article_analysis/Polarity/FEEL_clean.csv'
     df = pd.read_csv(path, sep=';')
     return(df)
 

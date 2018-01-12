@@ -9,9 +9,12 @@ out : a list of dictionary for each words of the article.
 This function create a list of words with wikipedia link or a synonym.
 
 """
+import sys
+sys.path.insert(0, 'Word_analysis/Synset')
+import g6_wordnet_synonym_V1_5 as syno
 
-from Synset import g6_wordnet_synonym_V1_5 as syno
-from Entity import wiki_search_v1_3 as wiki
+sys.path.insert(0, 'Word_analysis/Entity')
+import wiki_search_v1_3 as wiki
 import json
 
 
