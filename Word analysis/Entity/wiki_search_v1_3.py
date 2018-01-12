@@ -5,12 +5,11 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import g6_wordnet_synonym_V1_4 as syno
 import wikipedia as wk
-import json
 
 
 def wikipedia_search(named_entity):
+
     """
     in : string of characters corresponding to a named entity
     out : url link of the wikipedia page associating to a namerd entity, type =
@@ -18,10 +17,11 @@ def wikipedia_search(named_entity):
     This function looking for the named entity on wikipedia and return the url
     link.
     """
-    url_begin = 'https://fr.wikipedia.org/wiki/'
+
     wk.set_lang("fr")
     try:
         search = wk.search(named_entity)[0].replace(' ', '_')
     except:
-        return(url_begin)
+        return('https://fr.wikipedia.org/wiki/')
+    url_begin = 'https://fr.wikipedia.org/wiki/'
     return url_begin + search

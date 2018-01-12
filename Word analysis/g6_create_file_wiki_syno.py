@@ -2,19 +2,23 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Create a list of words with wikipedia or a synonym.
+
+in : an article and it id.
+out : a list of dictionary for each words of the article.
+
+This function create a list of words with wikipedia link or a synonym.
+
 """
 
-import g6_wordnet_synonym_V1_4 as syno
-import wiki_search_v1_2 as wiki
+from Synset import g6_wordnet_synonym_V1_5 as syno
+from Entity import wiki_search_v1_3 as wiki
 import json
 
-if __name__ == '__main__':
-    path = '/home/Robin/Documents/M1/Inter_Promo/target_press_article/artfusc1002018-01-08_filtering.json'
-    fic = open(path)
+
+def create_wiki_syno(file, id_article):
+    fic = open(file)
     text = json.load(fic)
     content = text['content']
-
     liste_result = []
     for key in content.keys():
         if key != 'words' and key != 'list_lemma':
@@ -24,13 +28,18 @@ if __name__ == '__main__':
             result['word'] = content[key]['word']
             result['type_entity'] = content[key]['type_entity']
             result['pos_tag'] = content[key]['pos_tag']
-            result['id_article'] = '-4217'
+            result['id_article'] = id_article
 
             if result['type_entity'] != 'Null':
                 result['file_wiki'] = wiki.wikipedia_search(result['word'])
                 result['synonym'] = ''
+            elif result['pos_tag'] in ['STOPWORD', 'DET']:
+                result['file_wiki'] = 'NULL'
+                result['synonym'] = ''
             else:
-                result['file_wiki'] = ''
+                result['file_wiki'] = 'NULL'
                 result['synonym'] = syno.give_the_first_synonym(result['word'])
 
             liste_result.append(result)
+    #liste_result = json.dumps(liste_result, ensure_ascii=False)
+    return liste_result
